@@ -5,14 +5,14 @@ import unicodedata
 import hashlib
 from pathlib import Path
 
-VIDEO_DIR = Path("src/video")
-AUDIO_DIR = Path("src/audio")
-
-VIDEO_DIR.mkdir(parents=True, exist_ok=True)
-AUDIO_DIR.mkdir(parents=True, exist_ok=True)
-
-available_files = [f for f in VIDEO_DIR.iterdir() if f.is_file()]
-print([f.name for f in available_files])
+# VIDEO_DIR = Path("src/video")
+# AUDIO_DIR = Path("src/audio")
+#
+# VIDEO_DIR.mkdir(parents=True, exist_ok=True)
+# AUDIO_DIR.mkdir(parents=True, exist_ok=True)
+#
+# available_files = [f for f in VIDEO_DIR.iterdir() if f.is_file()]
+# print([f.name for f in available_files])
 
 
 def normalize_filename(name: str) -> str:
@@ -40,7 +40,7 @@ def name_list(files):
     return {file.name: convert_name(file) for file in files}
 
 
-def format_converter(file_map, output_format="mp3"):
+def format_converter(file_map, VIDEO_DIR, AUDIO_DIR, output_format="mp3"):
     for original, renamed in file_map.items():
         input_path = VIDEO_DIR / original
         output_path = AUDIO_DIR / f"{renamed}.{output_format}"
@@ -51,5 +51,4 @@ def format_converter(file_map, output_format="mp3"):
         )
 
 
-file_map = name_list(available_files)
-format_converter(file_map, "mp3")
+
